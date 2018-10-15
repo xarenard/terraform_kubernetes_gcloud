@@ -1,14 +1,28 @@
 provider "kubernetes" {
-  host = "${var.endpoint}"
-
+  host                   = "${var.endpoint}"
   client_certificate     = "${base64decode("${var.client_certificate}")}"
   client_key             = "${base64decode("${var.client_key}")}"
   cluster_ca_certificate = "${base64decode("${var.cluster_ca_certificate}")}"
 }
 
+resource "kubernetes_namespace" "namespace" {
+  metadata {
+    annotations {
+      name = "${var.namespace_annotation_name}"
+    }
+
+    labels {
+      mylabel = "${var.namespace_label_name}"
+    }
+
+    name = "${var.namespace_name}"
+  }
+}
+
 resource "kubernetes_pod" "nginx" {
   metadata {
-    name = "nginx-example"
+    name      = "nginx-example"
+    namespace = "${kubernetes_namespace.namespace.id}"
 
     labels {
       App = "nginx"

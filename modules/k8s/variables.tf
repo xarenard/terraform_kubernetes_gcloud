@@ -1,6 +1,4 @@
-variable "endpoint" {
-  type = "string"
-}
+variable "endpoint" {}
 
 variable "service_port" {}
 
@@ -13,3 +11,9 @@ variable "client_key" {}
 variable "cluster_ca_certificate" {}
 
 variable "image_name" {}
+
+variable "namespace_label_name" {}
+
+variable "namespace_annotation_name" {}
+
+variable "namespace_name" {}

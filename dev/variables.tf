@@ -25,3 +25,18 @@ variable "image_name" {
   type    = "string"
   default = "nginx:1.7.8"
 }
+
+variable "namespace_label_name" {
+  type    = "string"
+  default = "development"
+}
+
+variable "namespace_annotation_name" {
+  type    = "string"
+  default = "development"
+}
+
+variable "namespace_name" {
+  type    = "string"
+  default = "development"
+}
