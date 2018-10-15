@@ -17,3 +17,23 @@ variable "namespace_label_name" {}
 variable "namespace_annotation_name" {}
 
 variable "namespace_name" {}
+
+variable "probe_http_port" {}
+
+variable "probe_http_path" {}
+
+variable "container_name" {}
+
+variable "num_replica" {}
+
+variable "probe_initial_delay" {
+  default = "5"
+}
+
+variable "probe_period_seconds" {
+  default = "60"
+}
+
+variable "probe_http_host" {
+  default = ""
+}

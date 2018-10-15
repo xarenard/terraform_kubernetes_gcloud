@@ -19,36 +19,69 @@ resource "kubernetes_namespace" "namespace" {
   }
 }
 
-resource "kubernetes_pod" "nginx" {
+resource "kubernetes_replication_controller" "replication_controller" {
   metadata {
-    name      = "nginx-example"
     namespace = "${kubernetes_namespace.namespace.id}"
 
+    name = "${var.container_name}"
+
     labels {
-      App = "nginx"
+      App = "${var.container_name}"
     }
   }
 
   spec {
-    container {
-      image = "nginx:1.7.8"
-      name  = "example"
+    replicas = "${var.num_replica}"
 
-      port {
-        container_port = "${var.container_port}"
+    selector {
+      App = "${var.container_name}"
+    }
+
+    template {
+      container {
+        image = "${var.image_name}"
+        name  = "${var.container_name}"
+
+        readiness_probe {
+          initial_delay_seconds = "${var.probe_initial_delay}"
+          period_seconds        = "${var.probe_period_seconds}"
+
+          http_get {
+            path = "${var.probe_http_path}"
+            port = "${var.probe_http_port}"
+            host = "${var.probe_http_host}"
+          }
+        }
+
+        port {
+          container_port = "${var.container_port}"
+        }
+
+        resources {
+          limits {
+            cpu    = "0.5"
+            memory = "512Mi"
+          }
+
+          requests {
+            cpu    = "250m"
+            memory = "50Mi"
+          }
+        }
       }
     }
   }
 }
 
-resource "kubernetes_service" "nginx" {
+resource "kubernetes_service" "service" {
   metadata {
-    name = "nginx-example"
+    name      = "${var.container_name}-service"
+    namespace = "${kubernetes_namespace.namespace.id}"
   }
 
   spec {
     selector {
-      App = "${kubernetes_pod.nginx.metadata.0.labels.App}"
+      App = "${kubernetes_replication_controller.replication_controller.metadata.0.labels.App}"
     }
 
     port {

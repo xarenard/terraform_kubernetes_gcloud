@@ -1,31 +1,17 @@
-variable "cluster_name" {
-  type    = "string"
-  default = "mycluster"
-}
+variable "cluster_name" {}
 
-variable "num_nodes" {
-  type    = "string"
-  default = "3"
-}
+variable "num_nodes" {}
 
-variable "zone" {
-  type    = "string"
-  default = "europe-west2-a"
-}
+variable "zone" {}
 
-variable "machine_type" {
-  type    = "string"
-  default = "f1-micro"
-}
+variable "machine_type" {}
 
-variable "project_name" {
-  type = "string"
-}
+variable "project_name" {}
 
-variable "region" {
-  type = "string"
-}
+variable "region" {}
 
-variable "credentials_file_path" {
-  type = "string"
+variable "credentials_file_path" {}
+
+variable "enable_kubernetes_alpha" {
+  default = "true"
 }

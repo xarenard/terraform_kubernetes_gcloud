@@ -3,6 +3,10 @@ module "cluster" {
   project_name          = "${var.project_name}"
   credentials_file_path = "${var.credentials_file_path}"
   region                = "${var.region}"
+  zone                  = "${var.zone}"
+  cluster_name          = "${var.cluster_name}"
+  num_nodes             = "${var.num_nodes}"
+  machine_type          = "${var.machine_type}"
 }
 
 module "k8s" {
@@ -17,4 +21,9 @@ module "k8s" {
   namespace_annotation_name = "${var.namespace_annotation_name}"
   namespace_label_name      = "${var.namespace_label_name}"
   namespace_name            = "${var.namespace_name}"
+  container_name            = "${var.container_name}"
+  num_replica               = "${var.num_replica}"
+  probe_initial_delay       = "${var.probe_initial_delay}"
+  probe_http_port           = "${var.probe_http_port}"
+  probe_http_path           = "${var.probe_http_path}"
 }

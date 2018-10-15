@@ -1,42 +1,37 @@
-variable "project_name" {
-  type = "string"
-}
+variable "cluster_name" {}
 
-variable "credentials_file_path" {
-  type = "string"
-}
+variable "num_nodes" {}
 
-variable "region" {
-  type    = "string"
-  default = "eu-west2"
-}
+variable "zone" {}
 
-variable "container_port" {
-  type    = "string"
-  default = "80"
-}
+variable "machine_type" {}
 
-variable "service_port" {
-  type    = "string"
-  default = "80"
-}
+variable "project_name" {}
 
-variable "image_name" {
-  type    = "string"
-  default = "nginx:1.7.8"
-}
+variable "credentials_file_path" {}
 
-variable "namespace_label_name" {
-  type    = "string"
-  default = "development"
-}
+variable "region" {}
 
-variable "namespace_annotation_name" {
-  type    = "string"
-  default = "development"
-}
+variable "container_port" {}
 
-variable "namespace_name" {
-  type    = "string"
-  default = "development"
-}
+variable "service_port" {}
+
+variable "image_name" {}
+
+variable "namespace_label_name" {}
+
+variable "namespace_annotation_name" {}
+
+variable "namespace_name" {}
+
+variable "probe_http_port" {}
+
+variable "probe_http_path" {}
+
+variable "probe_http_host" {}
+
+variable "container_name" {}
+
+variable "num_replica" {}
+
+variable "probe_initial_delay" {}

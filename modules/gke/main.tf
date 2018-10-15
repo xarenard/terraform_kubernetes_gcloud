@@ -8,7 +8,7 @@ resource "google_container_cluster" "container_cluster" {
   zone                    = "${var.zone}"
   initial_node_count      = "${var.num_nodes}"
   project                 = "${var.project_name}"
-  enable_kubernetes_alpha = "true"
+  enable_kubernetes_alpha = "${var.enable_kubernetes_alpha}"
   enable_legacy_abac      = "true"
 
   node_config {
@@ -20,9 +20,9 @@ resource "google_container_cluster" "container_cluster" {
     ]
 
     labels {
-      foo = "bar"
+      foo = "dev"
     }
 
-    tags = ["foo", "bar"]
+    tags = ["dev"]
   }
 }
