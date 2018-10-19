@@ -4,9 +4,12 @@ module "cluster" {
   credentials_file_path = "${var.credentials_file_path}"
   region                = "${var.region}"
   zone                  = "${var.zone}"
+  additional_zones      = "${var.additional_zones}"
   cluster_name          = "${var.cluster_name}"
   num_nodes             = "${var.num_nodes}"
   machine_type          = "${var.machine_type}"
+  network_name          = "${var.network_name}"
+  network_subnet_cidr   = "${var.network_subnet_cidr}"
 }
 
 module "k8s" {

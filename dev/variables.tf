@@ -4,6 +4,11 @@ variable "num_nodes" {}
 
 variable "zone" {}
 
+variable "additional_zones" {
+  type = "list"
+}
+
+variable "network_name" {}
 variable "machine_type" {}
 
 variable "project_name" {}
@@ -35,3 +40,5 @@ variable "container_name" {}
 variable "num_replica" {}
 
 variable "probe_initial_delay" {}
+
+variable "network_subnet_cidr" {}
